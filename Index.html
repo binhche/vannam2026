@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vân Nam 2026 · Đoàn 4 người</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a2e;--paper:#faf8f4;--sand:#e8dcc8;--terrac:#c17f5a;--teal:#2d7a72;--teal2:#1a4d48;--gold:#c9952a;--red:#b84040;--mist:#f0ebe2;--border:rgba(0,0,0,0.07);--admin:#6c3fd4}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.6}
+.hero{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.5rem 3rem}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0d1f1c 0%,#1a4d48 50%,#2d6b62 100%)}
+.hero-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1626800260459-1ebe085fe829?w=900&q=75');background-size:cover;background-position:center;opacity:0.35;mix-blend-mode:luminosity}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,149,42,.2);border:1px solid rgba(201,149,42,.45);color:#e8c870;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:.35rem .9rem;border-radius:2rem;margin-bottom:1.2rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,9vw,4rem);color:#fff;line-height:1.05;margin-bottom:.6rem}
+.hero h1 em{color:#e8c870;font-style:italic}
+.hero-sub{color:rgba(255,255,255,.55);font-size:.82rem;letter-spacing:.06em;margin-bottom:2rem}
+.hero-chips{display:flex;gap:.6rem;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:2rem;padding:.4rem .9rem;font-size:.75rem}
+.chip strong{color:#e8c870}
+.nav{position:sticky;top:0;z-index:100;background:var(--ink);display:flex;overflow-x:auto;scrollbar-width:none;border-bottom:2px solid var(--teal)}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex-shrink:0;padding:.85rem 1.15rem;color:rgba(255,255,255,.5);font-size:.77rem;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer}
+.nav a:hover,.nav a.active{color:#fff;border-bottom-color:var(--gold)}
+.prog-bar{background:var(--teal2);color:#fff;padding:.8rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.prog-track{flex:1;background:rgba(255,255,255,.18);border-radius:2rem;height:5px}
+.prog-fill{height:5px;border-radius:2rem;background:var(--gold);width:0;transition:width .4s}
+.prog-label{font-size:.72rem;white-space:nowrap;opacity:.85}
+section.tab{display:none;padding:2rem 1.5rem;max-width:680px;margin:0 auto}
+section.tab.active{display:block}
+.sec-eye{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terrac);margin-bottom:.3rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.65rem;margin-bottom:1.4rem;line-height:1.15}
+.alert{border-radius:12px;padding:.9rem 1rem;margin-bottom:.85rem;display:flex;gap:.65rem;align-items:flex-start;font-size:.81rem;line-height:1.5}
+.alert-icon{font-size:1rem;padding-top:2px}
+.alert strong{display:block;font-weight:600;margin-bottom:.1rem}
+.alert.red{background:#fff0ee;border:1px solid #ffd5cc;color:#7a2e2e}
+.alert.yellow{background:#fffbee;border:1px solid #f5e0a0;color:#7a5500}
+.alert.green{background:#edf7f0;border:1px solid #aadfc0;color:#1a5c34}
+.alert.blue{background:#edf4ff;border:1px solid #b3ccff;color:#1a3c7a}
+.cl-group{margin-bottom:1.75rem}
+.cl-group-title{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500;padding:.5rem 0;border-bottom:1px solid var(--sand);margin-bottom:.6rem}
+.cl-item{display:flex;align-items:flex-start;gap:.8rem;padding:.7rem 0;border-bottom:1px solid rgba(0,0,0,.05);cursor:pointer}
+.cl-item:last-child{border-bottom:none}
+.cl-item.done{opacity:.42}
+.cl-item.done .cl-text{text-decoration:line-through}
+.cl-box{width:21px;height:21px;min-width:21px;border:2px solid var(--sand);border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:center;transition:all .18s;margin-top:2px}
+.cl-item.done .cl-box{background:var(--teal);border-color:var(--teal)}
+.cl-box svg{display:none;width:12px;height:12px;stroke:#fff;stroke-width:2.5;fill:none}
+.cl-item.done .cl-box svg{display:block}
+.cl-title{font-weight:500;font-size:.87rem;line-height:1.3}
+.cl-desc{font-size:.77rem;color:#666;margin-top:.15rem;line-height:1.4}
+.badge{font-size:.63rem;padding:.18rem .55rem;border-radius:2rem;font-weight:500;margin-top:.3rem;display:inline-block}
+.b-red{background:#fff0ee;color:var(--red)}
+.b-yellow{background:#fff8e1;color:#9a6800}
+.b-green{background:#e8f5e9;color:#2e7d32}
+.day-block{margin-bottom:2rem}
+.day-pill{background:var(--teal);color:#fff;font-size:.7rem;font-weight:500;padding:.3rem .8rem;border-radius:2rem;display:inline-block;margin-bottom:.85rem}
+.tl-item{position:relative;padding-left:3rem;padding-bottom:1.1rem}
+.tl-item::before{content:'';position:absolute;left:10px;top:24px;bottom:0;width:1px;background:var(--sand)}
+.tl-item:last-child::before{display:none}
+.tl-time{position:absolute;left:0;top:2px;font-size:.66rem;color:var(--teal);font-weight:500;width:2rem;text-align:center;line-height:1.2}
+.tl-dot{position:absolute;left:6px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--sand);border:2px solid #fff;box-shadow:0 0 0 1.5px var(--sand)}
+.tl-dot.crit{background:var(--red);box-shadow:0 0 0 1.5px var(--red)}
+.tl-dot.hi{background:var(--gold);box-shadow:0 0 0 1.5px var(--gold)}
+.tl-card{background:#fff;border-radius:11px;padding:.8rem .95rem;box-shadow:0 1px 4px rgba(0,0,0,.07);border:1px solid var(--border)}
+.tl-card.crit{border-left:3px solid var(--red)}
+.tl-card.hi{border-left:3px solid var(--gold)}
+.tl-act{font-size:.87rem;font-weight:500;line-height:1.3}
+.tl-note{font-size:.74rem;color:#777;margin-top:.28rem;line-height:1.4}
+.tl-risk{font-size:.71rem;color:var(--red);margin-top:.35rem}
+.spot-card{background:#fff;border-radius:16px;overflow:hidden;margin-bottom:1.1rem;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.spot-img{height:220px;overflow:hidden;position:relative}
+.spot-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.spot-card:hover .spot-img img{transform:scale(1.04)}
+.spot-tag{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);color:#fff;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2rem}
+.spot-body{padding:1rem 1.1rem 1.1rem}
+.spot-name{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:.35rem}
+.spot-story{background:linear-gradient(135deg,#f7f3ee,#f0ebe2);border-left:3px solid var(--terrac);border-radius:0 8px 8px 0;padding:.75rem .85rem;margin:.75rem 0;font-size:.79rem;color:#4a3520;line-height:1.55;font-style:italic}
+.spot-story strong{color:var(--terrac);font-style:normal;display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2rem}
+.spot-desc{font-size:.82rem;color:#555;line-height:1.55;margin-bottom:.8rem}
+.spot-tips{background:var(--mist);border-radius:8px;padding:.7rem .85rem;font-size:.78rem;color:#444;line-height:1.5;margin-bottom:.85rem}
+.spot-tips strong{color:var(--teal);display:block;margin-bottom:.2rem;font-size:.67rem;text-transform:uppercase;letter-spacing:.1em}
+.spot-btns{display:flex;gap:.55rem;flex-wrap:wrap}
+.btn-map{display:inline-flex;align-items:center;gap:.35rem;background:var(--teal);color:#fff;text-decoration:none;font-size:.73rem;font-weight:500;padding:.45rem .85rem;border-radius:2rem;transition:background .2s}
+.btn-map:hover{background:var(--teal2)}
+.btn-map.out{background:transparent;color:var(--teal);border:1.5px solid var(--teal)}
+.culture-card{background:#fff;border-radius:14px;margin-bottom:1rem;border:1px solid var(--border);overflow:hidden}
+.culture-img{height:190px;overflow:hidden}
+.culture-img img{width:100%;height:100%;object-fit:cover}
+.culture-body{padding:1rem 1.1rem 1.1rem}
+.culture-title{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.5rem}
+.culture-text{font-size:.81rem;color:#444;line-height:1.6;margin-bottom:.6rem}
+.legend-box{background:linear-gradient(135deg,#1a2e2a,#2d4a45);color:rgba(255,255,255,.88);border-radius:10px;padding:.85rem 1rem;font-size:.79rem;line-height:1.6;font-style:italic;margin-top:.5rem}
+.legend-box strong{color:#e8c870;font-style:normal;display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.3rem}
+.food-item{background:#fff;border-radius:12px;padding:.9rem 1rem;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.05);display:flex;gap:.8rem;margin-bottom:.65rem;align-items:flex-start}
+.food-em{font-size:1.9rem;line-height:1;padding-top:1px}
+.food-inf{flex:1}
+.food-cn{font-size:.74rem;color:var(--teal);font-weight:500}
+.food-name{font-weight:500;font-size:.89rem}
+.food-desc{font-size:.77rem;color:#666;margin-top:.15rem;line-height:1.4}
+.food-day{font-size:.64rem;color:var(--terrac);font-weight:500;margin-top:.3rem;text-transform:uppercase;letter-spacing:.07em}
+.food-price{font-size:.7rem;background:var(--mist);color:#555;padding:.18rem .55rem;border-radius:2rem;white-space:nowrap;align-self:flex-start;margin-top:2px}
+.hotel-card{background:#fff;border-radius:14px;overflow:hidden;margin-bottom:.9rem;border:1px solid var(--border);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.hotel-hdr{padding:1rem 1.2rem;color:#fff}
+.hotel-night{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.2rem}
+.hotel-name{font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.2}
+.hotel-cn{font-size:.73rem;color:rgba(255,255,255,.55);margin-top:.1rem}
+.hotel-body{padding:.9rem 1.2rem}
+.hotel-row{display:flex;gap:.45rem;font-size:.79rem;color:#555;padding:.35rem 0;border-bottom:1px solid var(--mist);line-height:1.4}
+.hotel-row:last-child{border-bottom:none}
+.hotel-ico{color:var(--teal);min-width:1.1rem}
+.hotel-footer{padding:0 1.2rem 1rem;display:flex;gap:.5rem}
+.tip-item{background:#fff;border-radius:10px;padding:.82rem .95rem;font-size:.81rem;color:#444;border:1px solid var(--border);display:flex;gap:.65rem;align-items:flex-start;margin-bottom:.5rem;line-height:1.5}
+.tip-ico{font-size:1rem;min-width:1.1rem}
+.tips-group-title{font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500;padding:1rem 0 .5rem;border-bottom:1px solid var(--sand);margin-bottom:.6rem}
+/* ADMIN */
+.admin-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;width:50px;height:50px;border-radius:50%;background:var(--admin);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(108,63,212,.4);font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
+.admin-fab:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(108,63,212,.5)}
+.admin-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);align-items:flex-end}
+.admin-overlay.open{display:flex}
+.admin-panel{background:#fff;width:100%;max-height:92svh;border-radius:20px 20px 0 0;overflow:hidden;display:flex;flex-direction:column}
+.admin-header{background:var(--admin);color:#fff;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.admin-header h3{font-size:1rem;font-weight:500}
+.admin-close{background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;line-height:1}
+.admin-login{padding:2rem 1.5rem;display:flex;flex-direction:column;gap:.85rem}
+.admin-login h4{font-size:1.05rem;font-weight:500}
+.admin-login p{font-size:.81rem;color:#666}
+.admin-input{width:100%;padding:.7rem 1rem;border:1.5px solid var(--sand);border-radius:8px;font-size:.9rem;font-family:inherit;transition:border-color .2s}
+.admin-input:focus{outline:none;border-color:var(--admin)}
+.admin-btn{padding:.72rem 1rem;border-radius:8px;border:none;cursor:pointer;font-size:.87rem;font-family:inherit;font-weight:500;transition:all .2s}
+.admin-btn.primary{background:var(--admin);color:#fff}
+.admin-btn.primary:hover{background:#5530b0}
+.admin-btn.secondary{background:var(--mist);color:var(--ink)}
+.admin-content{padding:1rem 1.5rem 0.5rem;overflow-y:auto;flex:1}
+.admin-section{margin-bottom:1.4rem}
+.admin-section-title{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--admin);font-weight:500;margin-bottom:.65rem;padding-bottom:.35rem;border-bottom:1px solid rgba(108,63,212,.2)}
+.admin-field{margin-bottom:.8rem}
+.admin-field label{display:block;font-size:.75rem;color:#555;margin-bottom:.25rem;font-weight:500}
+.admin-textarea{width:100%;padding:.6rem .85rem;border:1.5px solid var(--sand);border-radius:8px;font-size:.83rem;font-family:inherit;resize:vertical;line-height:1.5;transition:border-color .2s}
+.admin-textarea:focus{outline:none;border-color:var(--admin)}
+.admin-save-bar{padding:.85rem 1.5rem;border-top:1px solid var(--sand);display:flex;gap:.7rem;align-items:center;background:#fff}
+.admin-msg{font-size:.78rem;color:var(--teal);display:none}
+.admin-err{font-size:.79rem;color:var(--red);margin-top:.4rem}
+footer{background:var(--ink);color:rgba(255,255,255,.38);text-align:center;padding:2rem 1.5rem;font-size:.73rem;line-height:1.7}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .45s ease both}
+.fu2{animation:fadeUp .45s .09s ease both}
+.fu3{animation:fadeUp .45s .18s ease both}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow fu">✦ 4 người · Tự túc · 5 ngày</div>
+    <h1 class="fu2">Vân Nam<br><em>2026</em></h1>
+    <p class="hero-sub fu3">Côn Minh · Đại Lý · Sa Khê (Shaxi) · Vân Nam, Trung Quốc</p>
+    <div class="hero-chips fu3">
+      <div class="chip">✈️ <strong>2/4</strong> Hà Nội → Côn Minh</div>
+      <div class="chip">🚄 <strong>3/4</strong> → Đại Lý</div>
+      <div class="chip">🏘️ <strong>4/4</strong> → Sa Khê</div>
+      <div class="chip">✈️ <strong>6/4</strong> → Hà Nội</div>
+    </div>
+  </div>
+</div>
+
+<div class="prog-bar">
+  <span class="prog-label" id="prog-text">0 / 0 việc xong</span>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+</div>
+
+<nav class="nav" id="nav">
+  <a class="active" data-tab="checklist">✅ Checklist</a>
+  <a data-tab="timeline">🕐 Lịch trình</a>
+  <a data-tab="spots">📍 Địa điểm</a>
+  <a data-tab="culture">🏛️ Văn hoá</a>
+  <a data-tab="food">🍜 Ăn uống</a>
+  <a data-tab="hotels">🏨 Khách sạn</a>
+  <a data-tab="tips">💡 Tips</a>
+</nav>
+
+<!-- CHECKLIST -->
+<section class="tab active" id="tab-checklist">
+  <p class="sec-eye">Chuẩn bị</p>
+  <h2 class="sec-title">Việc cần làm</h2>
+  <div class="alert red"><span class="alert-icon">🚨</span><div><strong>Làm ngay hôm nay!</strong>Đặt vé tàu Côn Minh ↔ Đại Lý · Cài Alipay · Cài VPN · Cài Amap offline</div></div>
+  <div class="cl-group">
+    <div class="cl-group-title">🎫 Vé & Đặt chỗ</div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_train1">Vé tàu Côn Minh → Đại Lý (3/4 tàu 10:30)</div><div class="cl-desc">Trip.com hoặc 12306.cn · Tàu D-class ~2h · Mang passport check-in tại ga</div><span class="badge b-red">🔴 Đặt ngay — cao điểm Thanh Minh TQ</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_train2">Vé tàu Đại Lý → Côn Minh (6/4 sáng 7:00)</div><div class="cl-desc">Đặt cùng lúc chiều đi · Phải về KM trước 10:30 để kịp bay 13:25</div><span class="badge b-red">🔴 Đặt ngay hôm nay</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_car">Xe Đại Lý ↔ Sa Khê (cả 2 chiều)</div><div class="cl-desc">Thuê xe riêng ~400–500 CNY/xe · Nhờ khách sạn Đại Lý book hộ</div><span class="badge b-yellow">🟡 Book trước khi đi</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_hotels">Xác nhận 3 khách sạn</div><div class="cl-desc">Qianhong Hotel · Dali Cloud Love Letter Inn · Yundu Shaxi / Miss May</div><span class="badge b-yellow">🟡 Kiểm tra booking</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_bike">Thuê xe đạp Sa Khê (4 xe cho CN 5/4)</div><div class="cl-desc">Nhắn khách sạn đặt trước khi check-in tối T7</div><span class="badge b-green">🟢 Hỏi khi check-in T7</span></div></div>
+  </div>
+  <div class="cl-group">
+    <div class="cl-group-title">📱 Thanh toán & Công nghệ</div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_alipay">Cài & test Alipay / WeChat Pay</div><div class="cl-desc">Alipay overseas tốt hơn · Liên kết Visa/Mastercard · Test giao dịch nhỏ</div><span class="badge b-red">🔴 Bắt buộc — không có tiền mặt được</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_vpn">Cài VPN & test hoạt động</div><div class="cl-desc">ExpressVPN / NordVPN / Astrill · Cần để dùng Google, WhatsApp, Insta</div><span class="badge b-red">🔴 Cài TRƯỚC khi sang TQ</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_amap">Cài Amap (高德地图) + tải offline</div><div class="cl-desc">Offline: Côn Minh, Đại Lý, huyện Kiếm Xuyên · Quan trọng ở vùng Sa Khê mất sóng</div><span class="badge b-red">🔴 Cài ngay hôm nay</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_sim">Mua SIM / eSIM Trung Quốc</div><div class="cl-desc">eSIM trên Klook/Airalo · 5–7 ngày ~150–200k VND · Hoặc mua tại sân bay KM</div><span class="badge b-yellow">🟡 Roaming VN sang TQ rất đắt</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_cny">Đổi tiền CNY · ~3–4 triệu/người backup</div><div class="cl-desc">Tỷ giá ~3.400 VND/CNY · Chợ Xizhou, quán Sa Khê không phải nơi nào cũng có QR</div><span class="badge b-yellow">🟡 Trước ngày đi</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title" data-key="cl_addr">Lưu offline địa chỉ TQ 3 khách sạn vào Photos</div><div class="cl-desc">Côn Minh: 千鸿酒店昆明站店 · Đại Lý: 大理云端情书 · Sa Khê: 云渡·沙溪院子</div><span class="badge b-yellow">🟡 Screenshot khi còn WiFi</span></div></div>
+  </div>
+  <div class="cl-group">
+    <div class="cl-group-title">🛂 Giấy tờ</div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title">Kiểm tra hộ chiếu 4 người · Còn hạn ≥ 6 tháng</div><div class="cl-desc">Hạn đến 10/2026+. Xác nhận visa TQ còn hạn, đúng số lần nhập cảnh</div><span class="badge b-red">🔴 Bắt buộc</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title">Scan hộ chiếu → Google Drive + group chat</div><div class="cl-desc">Backup khi mất giấy tờ · Gửi nhóm để mọi người đều có bản sao</div><span class="badge b-yellow">🟡 Phòng ngừa</span></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title">Mua bảo hiểm du lịch</div><div class="cl-desc">Gói có chậm chuyến + y tế · Bao Viet / PTI / qua thẻ tín dụng có sẵn</div><span class="badge b-yellow">🟡 Chi phí y tế TQ cao</span></div></div>
+  </div>
+  <div class="cl-group">
+    <div class="cl-group-title">🎒 Hành lý</div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title">Áo khoác mỏng + giày thể thao</div><div class="cl-desc">Ban ngày 20–25°C · Tối 10–15°C · Đường đá cổ trấn không bằng phẳng</div></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title">Thuốc cơ bản + kem chống nắng SPF50+</div><div class="cl-desc">Đau đầu, tiêu chảy, dị ứng · UV cao nguyên mạnh hơn HN nhiều dù trời mát</div></div></div>
+    <div class="cl-item" onclick="toggleCheck(this)"><div class="cl-box"><svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1"/></svg></div><div class="cl-text"><div class="cl-title">Power bank 20.000mAh</div><div class="cl-desc">Ổ cắm TQ Type A (2 dẹt) — VN tương thích · Ngày biking cần sạc đầy trước</div></div></div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="tab" id="tab-timeline">
+  <p class="sec-eye">Ngày qua ngày</p>
+  <h2 class="sec-title">Lịch trình chi tiết</h2>
+  <div class="alert yellow"><span class="alert-icon">⚡</span><div><strong>Mốc thời gian</strong>Viền đỏ = KHÔNG được trễ · Viền vàng = điểm highlight đáng mong đợi nhất</div></div>
+  <div class="day-block">
+    <div class="day-pill">Thứ 5 · 2/4 · Hà Nội → Côn Minh</div>
+    <div class="tl-item"><div class="tl-time">13:30</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">🛫 Có mặt Nội Bài · Terminal T1 (China Eastern)</div><div class="tl-note">Trước 2h15 · Check-in online từ 24h trước để chọn ghế</div><div class="tl-risk">⚠️ Không được trễ</div></div></div>
+    <div class="tl-item"><div class="tl-time">15:45</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">✈️ HN → Côn Minh cất cánh</div></div></div>
+    <div class="tl-item"><div class="tl-time">18:20</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">🛬 Hạ cánh Côn Minh · Nhập cảnh + lấy hành lý ~30p</div><div class="tl-note">Cài Didi ngay tại sân bay · ~50–70 CNY về khách sạn</div></div></div>
+    <div class="tl-item"><div class="tl-time">19:30</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">🏨 Check-in Qianhong Hotel (cách ga 700m)</div></div></div>
+    <div class="tl-item"><div class="tl-time">20:00</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act" data-key="tl_dinner1">🍜 Ăn tối · Qua Qiao Mi Xian (过桥米线) · Phở vịt đặc sản Côn Minh</div><div class="tl-note">Chọn quán đông người địa phương · Tránh quán tourist</div></div></div>
+  </div>
+  <div class="day-block">
+    <div class="day-pill">Thứ 6 · 3/4 · Côn Minh → Đại Lý → Hồ Nhĩ Hải</div>
+    <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">☕ Ăn sáng · Check out trước 10:00</div></div></div>
+    <div class="tl-item"><div class="tl-time">10:00</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">🚄 Có mặt ga Côn Minh · Tàu 10:30 đến Đại Lý</div><div class="tl-note">Có mặt trước 30p · Mang passport · D-class ~2h</div><div class="tl-risk">⚠️ Đã đặt vé chưa? Cao điểm Thanh Minh!</div></div></div>
+    <div class="tl-item"><div class="tl-time">12:30</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">🚕 Ga Đại Lý → taxi 30p vào cổ thành</div><div class="tl-note">~30–40 CNY · Show địa chỉ TQ: 大理古城</div></div></div>
+    <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act">🚲 Hồ Nhĩ Hải · Hành lang sinh thái bờ Tây (~20km, 4–5h)</div><div class="tl-note">Longkan → Caicun → Langqiao Bridge → Haishe Park → Wase Town → S Bay</div></div></div>
+    <div class="tl-item"><div class="tl-time">19:00</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act">🏮 Đại Lý cổ trấn · South Gate → Renmin → Foreigner Street</div><div class="tl-note">Ăn tối Renmin Street · Thử Rubing cheese nướng + cá Nhĩ Hải</div></div></div>
+  </div>
+  <div class="day-block">
+    <div class="day-pill">Thứ 7 · 4/4 · Xizhou Market → Sa Khê</div>
+    <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act">🛒 Chợ sáng làng Xizhou · Bánh Baba chiên · Nước ép lựu tươi</div><div class="tl-note">Cách cổ thành 20km · Mang tiền lẻ CNY</div></div></div>
+    <div class="tl-item"><div class="tl-time">11:00</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">⏰ Rời Xizhou · Không ở lại quá 11:30</div><div class="tl-risk">⚠️ Trễ = thiếu buffer đến Sa Khê</div></div></div>
+    <div class="tl-item"><div class="tl-time">11:30</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">🚗 Đại Lý → Sa Khê (~120km, ~2h xe thuê)</div><div class="tl-note">~400–500 CNY · Nhờ khách sạn book trước</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:30</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">🏘️ Đến Sa Khê · Check-in · Ăn trưa cổ trấn</div></div></div>
+    <div class="tl-item"><div class="tl-time">14:30</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act">📸 Khám phá & chụp ảnh cổ trấn Shaxi</div><div class="tl-note">Sideng Square · Xingjiao Temple · Hẻm đất đỏ · Đèn lồng buổi chiều</div></div></div>
+  </div>
+  <div class="day-block">
+    <div class="day-pill">Chủ nhật · 5/4 · Biking Sa Khê → Đại Lý</div>
+    <div class="tl-item"><div class="tl-time">07:30</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act">🚲 BIKING · Sideng Sq → Yujin Bridge → Mapingguan → Xingjiao Temple → Pioneer Bookstore → Huaxi Village</div><div class="tl-note">~4h · Đường Tea Horse Road cổ · Ít du khách · Đẹp nhất lúc sáng sớm</div></div></div>
+    <div class="tl-item"><div class="tl-time">11:00</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act" data-key="tl_coffee">☕ Half Mountain Coffee (半山咖啡) · View thung lũng Shaxi từ sườn núi</div><div class="tl-note">ĐIỂM HIGHLIGHT của cả trip! Cafe ngon + cảnh như tranh thuỷ mặc</div></div></div>
+    <div class="tl-item"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">🍱 Ăn trưa cổ trấn Sa Khê · Cơm chiên nấm rừng Vân Nam</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">🚗 Sa Khê → Đại Lý (~2h xe thuê)</div><div class="tl-note">Book xe cùng lúc với chiều T7</div></div></div>
+    <div class="tl-item"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">🏛️ Chùa Sùng Thánh Tự (nếu kịp · ~1.5h)</div><div class="tl-note">Taxi 10p từ cổ thành · "Chùa Thiên Long" trong Thiên Long Bát Bộ Kim Dung</div></div></div>
+    <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-dot"></div><div class="tl-card"><div class="tl-act">🛍️ Ăn tối & shopping phố cổ Đại Lý</div></div></div>
+  </div>
+  <div class="day-block">
+    <div class="day-pill">Thứ 2 · 6/4 · Đại Lý → Côn Minh → Hà Nội</div>
+    <div class="tl-item"><div class="tl-time">06:30</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">⏰ Dậy sớm · Check out · Ra ga · Set 2 báo thức!</div><div class="tl-risk">⚠️ Ngày quan trọng nhất — không được trễ tàu!</div></div></div>
+    <div class="tl-item"><div class="tl-time">07:00</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">🚄 Tàu Đại Lý → Côn Minh (~2h)</div><div class="tl-note">Nếu delay >1.5h: Didi thẳng sân bay từ ga (5km, 15p)</div><div class="tl-risk">⚠️ Phải về KM trước 10:30</div></div></div>
+    <div class="tl-item"><div class="tl-time">09:30</div><div class="tl-dot crit"></div><div class="tl-card crit"><div class="tl-act">🚕 Ga Côn Minh → Sân bay · 5km ~15p · Đặt Didi trên tàu</div><div class="tl-note">Có mặt sân bay lúc 10:45</div></div></div>
+    <div class="tl-item"><div class="tl-time">13:25</div><div class="tl-dot hi"></div><div class="tl-card hi"><div class="tl-act">✈️ Côn Minh → Hà Nội · Về nhà 14:05 🎉</div></div></div>
+  </div>
+</section>
+
+<!-- SPOTS -->
+<section class="tab" id="tab-spots">
+  <p class="sec-eye">Khám phá</p>
+  <h2 class="sec-title">Địa điểm nổi bật</h2>
+  <div class="spot-card">
+    <div class="spot-img"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=75" alt="Hồ Nhĩ Hải" loading="lazy"><div class="spot-tag">Đại Lý · Thứ 6 sáng</div></div>
+    <div class="spot-body">
+      <div class="spot-name">🌊 Hồ Nhĩ Hải (洱海)</div>
+      <div class="spot-story"><strong>✨ Truyền thuyết trăng đôi</strong>Người Bai kể rằng một tiên nữ bị đày xuống trần gian, thả chiếc gương ngọc xuống đáy hồ. Mỗi đêm trăng tròn, gương ngọc phát sáng tạo ra "trăng đôi" — vừa trên trời vừa dưới hồ. Ai chứng kiến vào đêm Trung Thu sẽ được phúc lộc cả năm.</div>
+      <div class="spot-desc" data-key="spot_erhai">Hành lang sinh thái bờ Tây dài ~20km. Đạp xe 4–5 tiếng dọc mặt hồ với view núi Thương Sơn hùng vĩ. Hồ có hình dạng giống chiếc tai người (洱 = cái tai), ở độ cao 1.972m, là hồ nước ngọt lớn thứ 7 Trung Quốc.</div>
+      <div class="spot-tips"><strong>💡 Tips thực tế</strong>Thuê xe đạp tại bến Longkan Wharf. Mang nước & snack. UV cao nguyên rất mạnh dù trời mát — bôi kem chống nắng. Chiều 15–17h ánh sáng đẹp nhất, núi Thương Sơn phản chiếu xuống hồ.</div>
+      <div class="spot-btns"><a href="https://maps.google.com/?q=Erhai+Lake+Dali+Yunnan" target="_blank" class="btn-map">📍 Google Maps</a><a href="https://maps.apple.com/?q=Erhai+Lake+Dali" target="_blank" class="btn-map out">🗺️ Apple Maps</a></div>
+    </div>
+  </div>
+  <div class="spot-card">
+    <div class="spot-img"><img src="https://images.unsplash.com/photo-1600870413873-de8cdb73d7f4?w=700&q=75" alt="Đại Lý" loading="lazy"><div class="spot-tag">Đại Lý · Thứ 6 chiều & Thứ 7</div></div>
+    <div class="spot-body">
+      <div class="spot-name">🏯 Đại Lý Cổ Trấn</div>
+      <div class="spot-story"><strong>🏛️ Kinh đô 1.300 năm</strong>Từng là kinh đô vương quốc Nam Chiếu (738–902) và Đại Lý (937–1253) — hai đế quốc kiểm soát toàn bộ Tây Nam TQ và một phần Đông Nam Á trong hơn 500 năm, tồn tại song song với nhà Đường và Tống.</div>
+      <div class="spot-desc" data-key="spot_dali">Phố cổ người Bai với tường trắng mái xám đặc trưng, xây từ đầu triều Minh thế kỷ 14. South Gate → Renmin Road là trục chính. Foreigner Street (洋人街) tập trung ẩm thực và bar. Buổi tối đèn lồng bật đỏ rực cực đẹp.</div>
+      <div class="spot-tips"><strong>💡 Tips thực tế</strong>Tránh quán có menu tiếng Anh to — thường tourist trap. Mua vải thổ cẩm, đồ tie-dye người Bai làm quà. Đêm đẹp hơn ban ngày.</div>
+      <div class="spot-btns"><a href="https://maps.google.com/?q=Dali+Ancient+Town+Yunnan" target="_blank" class="btn-map">📍 Google Maps</a></div>
+    </div>
+  </div>
+  <div class="spot-card">
+    <div class="spot-img"><img src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=700&q=75" alt="Chợ Xizhou" loading="lazy"><div class="spot-tag">Xizhou · Thứ 7 sáng</div></div>
+    <div class="spot-body">
+      <div class="spot-name">🛒 Chợ Sáng Làng Xizhou</div>
+      <div class="spot-story"><strong>🏡 Làng cổ Bai 700 năm tuổi</strong>Xizhou (喜洲) có những ngôi nhà Bai từ triều Minh–Thanh với kiến trúc "tam phòng nhất chiếu bích" — ba dãy nhà bao quanh sân trong với bức bình phong trang trí. Nhìn từ xa như tranh thuỷ mặc sống.</div>
+      <div class="spot-desc">Chợ thật 100% — nông dân từ hàng chục làng đổ về từ 6–11h. Tiếng mặc cả, màu rau củ tươi, mùi bánh Baba nướng. Không phải chợ du lịch.</div>
+      <div class="spot-tips"><strong>💡 Tips thực tế</strong>Đến trước 9h để đông vui nhất. Mang tiền lẻ CNY — không quét QR được. Sau chợ thử trà ba món trong làng: đắng → ngọt → dư vị.</div>
+      <div class="spot-btns"><a href="https://maps.google.com/?q=Xizhou+Village+Dali+Yunnan" target="_blank" class="btn-map">📍 Google Maps</a></div>
+    </div>
+  </div>
+  <div class="spot-card">
+    <div class="spot-img"><img src="https://images.unsplash.com/photo-1565120130276-dfbd9a7a3ad7?w=700&q=75" alt="Sa Khê" loading="lazy"><div class="spot-tag">Sa Khê · Thứ 7–CN</div></div>
+    <div class="spot-body">
+      <div class="spot-name">🏘️ Cổ Trấn Sa Khê (Shaxi · 沙溪)</div>
+      <div class="spot-story"><strong>🌍 UNESCO cứu sống Sa Khê 2001</strong>KTS Jacques Feiner (ETH Zürich) phát hiện Sideng Square là chợ Tea Horse Road DUY NHẤT còn nguyên vẹn trên thế giới. UNESCO đưa vào "100 di sản đang bị đe doạ" và tài trợ dự án bảo tồn 10 năm. Kết quả: Sa Khê sống lại như làng thật — không phải bảo tàng.</div>
+      <div class="spot-desc" data-key="spot_shaxi">Viên ngọc ẩn của Vân Nam. Tường đất đỏ, đèn lồng đỏ, không khí yên tĩnh hoàn toàn khác Đại Lý. Dưới 50.000 khách/năm so với Đại Lý 3 triệu — Sa Khê vẫn giữ sự chân thực hiếm có.</div>
+      <div class="spot-tips"><strong>💡 Tips thực tế</strong>Chụp ảnh đẹp nhất 7–9h sáng (ánh vàng trên tường đất đỏ) và chiều 16–18h (đèn lồng bật). Sideng Square chợ thứ 6 và thứ 2 — rất đông vui nếu trùng lịch.</div>
+      <div class="spot-btns"><a href="https://maps.google.com/?q=Shaxi+Ancient+Town+Yunnan" target="_blank" class="btn-map">📍 Google Maps</a></div>
+    </div>
+  </div>
+  <div class="spot-card">
+    <div class="spot-img"><img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=700&q=75" alt="Biking Sa Khê" loading="lazy"><div class="spot-tag">Sa Khê · CN sáng</div></div>
+    <div class="spot-body">
+      <div class="spot-name">🚲 Biking Route Sa Khê</div>
+      <div class="spot-story"><strong>🛤️ Đạp xe trên Tea Horse Road ngàn năm</strong>Đường đá Mapingguan Village chính là đoạn còn lại của Tea Horse Road ngàn năm — nơi đoàn la ngựa thồ trà Phổ Nhĩ 150–200kg đi qua mỗi ngày, kết nối Vân Nam với Tây Tạng suốt 1.000 năm lịch sử.</div>
+      <div class="spot-desc">Sideng Square → Yujin Bridge (cầu đá cổ + ruộng lúa) → Mapingguan Village → Xingjiao Temple → Pioneer Bookstore (trong kho lúa cổ!) → Huaxi Village → Half Mountain Coffee → về. Tổng ~4h.</div>
+      <div class="spot-tips"><strong>💡 Tips thực tế</strong>Thuê xe đạp nhờ khách sạn đặt trước tối T7. Xuất phát 7:30 để có ánh sáng đẹp và tránh nắng trưa. Pioneer Bookstore trong kho lúa cổ là điểm độc đáo nhất trip.</div>
+      <div class="spot-btns"><a href="https://maps.google.com/?q=Half+Mountain+Coffee+Shaxi+Yunnan" target="_blank" class="btn-map">☕ Half Mountain Café</a></div>
+    </div>
+  </div>
+  <div class="spot-card">
+    <div class="spot-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Three_Pagodas%2C_Dali%2C_Yunnan%2C_China.jpg/700px-Three_Pagodas%2C_Dali%2C_Yunnan%2C_China.jpg" alt="Chùa Sùng Thánh" loading="lazy"><div class="spot-tag">Đại Lý · CN chiều</div></div>
+    <div class="spot-body">
+      <div class="spot-name">🏛️ Chùa Sùng Thánh Tự & Ba Tháp</div>
+      <div class="spot-story"><strong>⚔️ Sự thật đằng sau Kim Dung</strong>9 trong 22 quốc vương Đại Lý đã xuất gia tại đây — độc nhất lịch sử Á Đông. Kim Dung lấy đây làm nguyên mẫu "chùa Thiên Long" trong Thiên Long Bát Bộ. Ba tháp ngà xây 824–840, cao 69.6m, đứng vững 1.200 năm qua nhiều trận động đất lớn.</div>
+      <div class="spot-desc">Hoàng gia Quốc Tự Nam Chiếu — trung tâm Phật giáo Mật tông lớn nhất Đông Nam Á thời bấy giờ. Năm 1978 tìm thấy hơn 600 hiện vật quý hiếm trong các tháp khi trùng tu.</div>
+      <div class="spot-btns"><a href="https://maps.google.com/?q=Chongsheng+Temple+Dali+Yunnan" target="_blank" class="btn-map">📍 Google Maps</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section class="tab" id="tab-culture">
+  <p class="sec-eye">Lịch sử & Văn hoá</p>
+  <h2 class="sec-title">Bức tranh toàn cảnh</h2>
+  <div class="culture-card">
+    <div class="culture-img"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=75" alt="Vân Nam" loading="lazy"></div>
+    <div class="culture-body">
+      <div class="culture-title">🌏 Vân Nam — "Nam của Mây"</div>
+      <div class="culture-text">Vân Nam (云南) là tỉnh đa dạng dân tộc nhất Trung Quốc với 26/56 dân tộc thiểu số. Địa hình trải từ đỉnh tuyết Ngọc Long (5.596m) đến rừng nhiệt đới 200m, tạo đa dạng sinh học phong phú nhất Đông Nam Á. Người ta nói: <em>"Nếu Trung Quốc là một quốc gia, thì Vân Nam là một thế giới."</em></div>
+      <div class="legend-box"><strong>📜 Hai đế quốc cổ đại</strong>Nam Chiếu (738–902) và Đại Lý (937–1253) kiểm soát toàn bộ Vân Nam và một phần Đông Nam Á hơn 500 năm — tồn tại song song với nhà Đường và Tống, có văn hoá Phật giáo phát triển hoàn toàn độc lập với Trung Nguyên.</div>
+    </div>
+  </div>
+  <div class="culture-card">
+    <div class="culture-img"><img src="https://images.unsplash.com/photo-1601397922721-4326b3571c7b?w=700&q=75" alt="Người Bai" loading="lazy"></div>
+    <div class="culture-body">
+      <div class="culture-title">🧵 Người Bai — Chủ nhân nghìn năm Đại Lý</div>
+      <div class="culture-text">Người Bai (白族 · "trắng") là dân tộc chủ thể vùng Đại Lý và Sa Khê với ~2 triệu người. Kiến trúc đặc trưng: tường trắng, mái ngói xám cong, cổng tam quan "tam phòng nhất chiếu bích". Nhìn từ xa như những bức tranh thuỷ mặc biết động.</div>
+      <div class="legend-box"><strong>🍵 Triết lý Trà Ba Món (三道茶)</strong>Lần một: Đắng — như tuổi trẻ gian khó. Lần hai: Ngọt — thành công và hạnh phúc. Lần ba: Dư vị bùi đắng — suy ngẫm cuộc đời. Triết lý nhân sinh người Bai truyền qua từng chén trà. Lễ hội Tam Nguyệt Tam tháng 3 âm lịch là hội chợ tồn tại hơn 1.000 năm.</div>
+    </div>
+  </div>
+  <div class="culture-card">
+    <div class="culture-img"><img src="https://images.unsplash.com/photo-1568454537842-d933259bb258?w=700&q=75" alt="Tea Horse Road" loading="lazy"></div>
+    <div class="culture-body">
+      <div class="culture-title">🛤️ Con Đường Trà Ngựa — Silk Road của Vân Nam</div>
+      <div class="culture-text">Tea Horse Road (茶马古道) kết nối Vân Nam với Tây Tạng, Ấn Độ và xa hơn. Hàng hoá chính: trà Phổ Nhĩ đổi lấy ngựa Tây Tạng. Tồn tại từ thế kỷ 7, hoạt động mạnh nhất thời Đường–Tống–Minh–Thanh, kéo dài hơn 1.000 năm liên tục.</div>
+      <div class="legend-box"><strong>🐎 Hành trình khắc nghiệt nhất châu Á</strong>Đoàn la ngựa thồ hàng 150–200kg đi qua núi cao 4.000–5.000m, vượt sông Mekong và Salween. Sa Khê là điểm dừng quan trọng — nơi thương nhân nghỉ ngơi, giao dịch, cầu nguyện trước khi vào Tây Tạng. Sideng Square là chợ Tea Horse Road DUY NHẤT còn nguyên vẹn trên thế giới.</div>
+    </div>
+  </div>
+  <div class="culture-card">
+    <div class="culture-img"><img src="https://images.unsplash.com/photo-1599408960400-0f8290f44c81?w=700&q=75" alt="Phở vịt" loading="lazy"></div>
+    <div class="culture-body">
+      <div class="culture-title">🍜 Truyền thuyết Phở Vịt Bắc Cầu</div>
+      <div class="culture-text">Đây là câu chuyện tình yêu đằng sau món phở nổi tiếng nhất Vân Nam — minh chứng cho sự sáng tạo từ tình yêu vượt qua gian khó.</div>
+      <div class="legend-box"><strong>💕 Câu chuyện người vợ thảo hiền</strong>Ngày xưa, một học trò nghèo ôn thi trên đảo nhỏ giữa hồ. Người vợ mỗi ngày đi qua cầu dài mang cơm — nhưng khi đến nơi thức ăn đã nguội. Một hôm bà phát hiện lớp mỡ vịt nổi trên nước dùng giữ nhiệt hoàn hảo. Từ đó bà mang nước dùng sôi riêng, nguyên liệu tươi riêng, thả vào tô khi đến. Chồng đỗ tiến sĩ, đặt tên món là "过桥米线" — Phở Vượt Cầu — để ghi nhớ tình yêu vợ. Tô đặc biệt ngày nay có đến 30 loại nguyên liệu.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="tab" id="tab-food">
+  <p class="sec-eye">Ẩm thực</p>
+  <h2 class="sec-title">Ăn gì · Ở đâu</h2>
+  <div class="alert green"><span class="alert-icon">💳</span><div><strong>Thanh toán</strong>Alipay / WeChat Pay là bắt buộc. Nhiều quán ngon ở Sa Khê và chợ Xizhou KHÔNG nhận thẻ nước ngoài.</div></div>
+  <div class="food-item"><div class="food-em">🍜</div><div class="food-inf"><div class="food-cn">过桥米线</div><div class="food-name" data-key="food_f1">Qua Qiao Mi Xian · Phở vịt bắc cầu</div><div class="food-desc" data-key="food_d1">Đặc sản số 1 Côn Minh. Nước dùng vịt sôi trong tô sứ giữ nhiệt, thả nguyên liệu tươi vào ăn ngay. Không ăn là tiếc cả chuyến.</div><div class="food-day">📅 2/4 · Tối · Côn Minh gần ga tàu</div></div><div class="food-price">50–80k VND</div></div>
+  <div class="food-item"><div class="food-em">🧀</div><div class="food-inf"><div class="food-cn">乳饼</div><div class="food-name" data-key="food_f2">Rubing Cheese nướng than</div><div class="food-desc" data-key="food_d2">Phô mai tươi người Bai, nướng vàng giòn ngoài mềm dai trong. Vị nhạt — lạ miệng và nghiện. Ăn kèm cơm hoặc làm snack đường phố.</div><div class="food-day">📅 3/4 · Tối · Renmin Street Đại Lý</div></div><div class="food-price">40–60k VND</div></div>
+  <div class="food-item"><div class="food-em">🐟</div><div class="food-inf"><div class="food-cn">洱海鱼</div><div class="food-name" data-key="food_f3">Cá Hồ Nhĩ Hải hấp tương</div><div class="food-desc" data-key="food_d3">Cá tươi đánh bắt tại hồ, hấp hoặc kho tương đặc trưng người Bai. Ăn sau khi dạo hồ xong — rất xứng!</div><div class="food-day">📅 3/4 · Tối · Renmin Street</div></div><div class="food-price">80–120k VND</div></div>
+  <div class="food-item"><div class="food-em">🥐</div><div class="food-inf"><div class="food-cn">粑粑</div><div class="food-name" data-key="food_f4">Bánh Baba chiên · Chợ Xizhou</div><div class="food-desc" data-key="food_d4">Bánh mì dẹt chiên vàng rụm, nhân thịt hoặc ngọt — đặc sản người Bai. Ăn nóng ngay tại chợ với nước ép lựu tươi ép tại chỗ.</div><div class="food-day">📅 4/4 · Sáng · Chợ Xizhou</div></div><div class="food-price">10–15k VND</div></div>
+  <div class="food-item"><div class="food-em">🍄</div><div class="food-inf"><div class="food-cn">云南野菌炒饭</div><div class="food-name" data-key="food_f5">Cơm chiên nấm rừng Vân Nam</div><div class="food-desc" data-key="food_d5">Nấm rừng Vân Nam đặc biệt thơm — không giống nơi nào. Cơm chiên đơn giản nhưng hương vị rất riêng. Quán nhỏ trong cổ trấn ngon hơn quán mặt tiền.</div><div class="food-day">📅 4/4 · Chiều · Sa Khê</div></div><div class="food-price">40–70k VND</div></div>
+  <div class="food-item"><div class="food-em">🍲</div><div class="food-inf"><div class="food-cn">云南菌汤锅</div><div class="food-name" data-key="food_f6">Lẩu nấm rừng Vân Nam</div><div class="food-desc" data-key="food_d6">Nước dùng nấm ngọt tự nhiên, không cần nhiều gia vị. Đặc trưng nhất vùng này. Ăn tối thoải mái ở Sa Khê sau ngày dài khám phá.</div><div class="food-day">📅 4/4 · Tối · Sa Khê</div></div><div class="food-price">80–100k/người</div></div>
+  <div class="food-item"><div class="food-em">☕</div><div class="food-inf"><div class="food-cn">半山咖啡</div><div class="food-name" data-key="food_f7">Half Mountain Coffee (Ban Shan)</div><div class="food-desc" data-key="food_d7">Cafe trên sườn núi, view toàn thung lũng Shaxi. Người chủ bỏ phố lên núi trồng cà phê. Điểm dừng biking không thể bỏ qua — cảnh như tranh thuỷ mặc sống.</div><div class="food-day">📅 5/4 · Sáng · Sa Khê biking route</div></div><div class="food-price">30–50k VND</div></div>
+  <div style="margin-top:1.2rem">
+    <div class="tips-group-title">💡 Mẹo ăn uống</div>
+    <div class="tip-item"><span class="tip-ico">🍽️</span>Quán xếp hàng người địa phương = ngon. Tránh quán chỉ có khách du lịch.</div>
+    <div class="tip-item"><span class="tip-ico">📱</span>Gõ tên món vào Google Translate → show màn hình là đủ, không cần nói tiếng Trung.</div>
+    <div class="tip-item"><span class="tip-ico">💧</span>Không uống nước máy. Luôn mua nước đóng chai.</div>
+    <div class="tip-item"><span class="tip-ico">🌶️</span>Ẩm thực Vân Nam nhạt và ít cay — rất phù hợp với người Việt.</div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section class="tab" id="tab-hotels">
+  <p class="sec-eye">Nghỉ ngơi</p>
+  <h2 class="sec-title">Khách sạn</h2>
+  <div class="hotel-card"><div class="hotel-hdr" style="background:linear-gradient(135deg,#1a4d48,#2d7a72)"><div class="hotel-night">Đêm 1 · 02/4 · Côn Minh</div><div class="hotel-name" data-key="h1_name">Qianhong Hotel – Kunming Station</div><div class="hotel-cn">千鸿酒店（昆明站店）</div></div><div class="hotel-body"><div class="hotel-row"><span class="hotel-ico">📍</span>Building 6, Floor 14, Xindu Yuncheng, Guandu District, Kunming</div><div class="hotel-row"><span class="hotel-ico">📞</span><span data-key="h1_phone">+86-189 8749 5678</span></div><div class="hotel-row"><span class="hotel-ico">🚄</span>Cách ga tàu: 700m — tiện nhất cho sáng 3/4</div><div class="hotel-row"><span class="hotel-ico">✈️</span>Cách sân bay: 5km (~20p Didi)</div></div><div class="hotel-footer"><a href="https://maps.google.com/?q=Qianhong+Hotel+Kunming+Station" target="_blank" class="btn-map" style="font-size:.73rem">📍 Bản đồ</a></div></div>
+  <div class="hotel-card"><div class="hotel-hdr" style="background:linear-gradient(135deg,#2e4a3e,#4a7a5a)"><div class="hotel-night">Đêm 2 & 4 · 03/4 và 05/4 · Đại Lý</div><div class="hotel-name" data-key="h2_name">Dali Cloud Love Letter Inn</div><div class="hotel-cn">大理云端情书 · Dali Ancient Town Branch</div></div><div class="hotel-body"><div class="hotel-row"><span class="hotel-ico">📍</span>No. 381 Yu'er Road, Dali Ancient City, Yunnan</div><div class="hotel-row"><span class="hotel-ico">💰</span><span data-key="h2_price">~900.000 VND / đêm</span></div><div class="hotel-row"><span class="hotel-ico">🏮</span>Ngay cạnh phố cổ & khu phố ẩm thực</div></div><div class="hotel-footer"><a href="https://maps.google.com/?q=Dali+Cloud+Love+Letter+Inn" target="_blank" class="btn-map" style="font-size:.73rem">📍 Bản đồ</a></div></div>
+  <div class="hotel-card"><div class="hotel-hdr" style="background:linear-gradient(135deg,#4a3520,#8b6340)"><div class="hotel-night">Đêm 3 · 04/4 · Sa Khê — OPTION 1 (Premium)</div><div class="hotel-name" data-key="h3_name">Yundu Shaxi Courtyard</div><div class="hotel-cn">云渡·沙溪院子</div></div><div class="hotel-body"><div class="hotel-row"><span class="hotel-ico">📍</span>No. 106 Sideng Street, Shaxi Ancient Town, Jianchuan</div><div class="hotel-row"><span class="hotel-ico">💰</span><span data-key="h3_price">~2.2–2.4 triệu / đêm</span></div><div class="hotel-row"><span class="hotel-ico">🏘️</span>Cách Sideng Square 400m · Sân vườn cổ đẹp nhất Sa Khê</div></div><div class="hotel-footer"><a href="https://maps.google.com/?q=Yundu+Shaxi+Courtyard+Yunnan" target="_blank" class="btn-map" style="font-size:.73rem">📍 Bản đồ</a></div></div>
+  <div class="hotel-card"><div class="hotel-hdr" style="background:linear-gradient(135deg,#3a4520,#6a7a40)"><div class="hotel-night">Đêm 3 · 04/4 · Sa Khê — OPTION 2 (Budget)</div><div class="hotel-name" data-key="h4_name">Miss May Hotel</div><div class="hotel-cn">沙溪古镇五月念人文客栈</div></div><div class="hotel-body"><div class="hotel-row"><span class="hotel-ico">📍</span>Beiguzong Lane, Sideng Street, Jianchuan, Yunnan</div><div class="hotel-row"><span class="hotel-ico">💰</span><span data-key="h4_price">~1.2 triệu / đêm</span></div><div class="hotel-row"><span class="hotel-ico">🏘️</span>Ở TRONG cổ trấn — tiện biking sáng sớm CN nhất</div><div class="hotel-row"><span class="hotel-ico">📚</span>Thư viện sách, vườn hoa hồng leo — vibe rất Sa Khê</div></div><div class="hotel-footer"><a href="https://maps.google.com/?q=Miss+May+Hotel+Shaxi" target="_blank" class="btn-map" style="font-size:.73rem">📍 Bản đồ</a></div></div>
+  <div class="alert blue"><span class="alert-icon">💡</span><div><strong>Chọn KS Sa Khê</strong>Budget OK → Yundu Courtyard (đẹp hơn). Ưu tiên biking sáng sớm → Miss May (trong cổ trấn, ra xe đạp ngay).</div></div>
+</section>
+
+<!-- TIPS -->
+<section class="tab" id="tab-tips">
+  <p class="sec-eye">Kinh nghiệm</p>
+  <h2 class="sec-title">Tips thực tế</h2>
+  <div class="tips-group-title" style="color:var(--red)">🚨 Rủi ro & Plan B</div>
+  <div class="tip-item"><span class="tip-ico">🚄</span><div><strong>Tàu 3/4 delay:</strong> Tàu tiếp theo cách 15p. Nếu trễ nhiều: bỏ Hồ Nhĩ Hải, ưu tiên cổ trấn.</div></div>
+  <div class="tip-item"><span class="tip-ico">🚄</span><div><strong>Tàu về 6/4 delay:</strong> Buffer ~3h đến bay 13:25. Nếu delay >1.5h: Didi thẳng sân bay từ ga (5km, 15p, ~35 CNY).</div></div>
+  <div class="tip-item"><span class="tip-ico">🌧️</span><div><strong>Mưa ngày biking:</strong> Khám phá Pioneer Bookstore, uống trà, chụp ảnh mưa phố cổ — cũng rất đẹp.</div></div>
+  <div class="tip-item"><span class="tip-ico">📵</span><div><strong>Mất internet Sa Khê:</strong> Amap offline đã tải. Địa chỉ TQ lưu sẵn Photos. Khách sạn có WiFi.</div></div>
+  <div class="tips-group-title">💳 Thanh toán</div>
+  <div class="tip-item"><span class="tip-ico">📲</span>Alipay: Tạo tài khoản → Verify hộ chiếu → Liên kết Visa/Master → Test giao dịch nhỏ trước khi đi</div>
+  <div class="tip-item"><span class="tip-ico">💵</span>Chợ Xizhou, quán nhỏ Sa Khê: mang tiền lẻ CNY — không phải nơi nào cũng có QR</div>
+  <div class="tip-item"><span class="tip-ico">🏧</span>ATM ở Côn Minh và Đại Lý nhận thẻ quốc tế nếu cần rút thêm</div>
+  <div class="tips-group-title">🗺️ Di chuyển</div>
+  <div class="tip-item"><span class="tip-ico">🚗</span>Didi (Uber TQ): Cài app, đăng ký số điện thoại. Tiện hơn taxi bắt tay nhiều.</div>
+  <div class="tip-item"><span class="tip-ico">🚕</span>Show địa chỉ TQ khi đón taxi — tài xế tỉnh lẻ không đọc được pinyin</div>
+  <div class="tip-item"><span class="tip-ico">🚄</span>Ga tàu TQ: mang passport, check-in qua máy tự động, có mặt trước 30p</div>
+  <div class="tips-group-title">📸 Chụp ảnh</div>
+  <div class="tip-item"><span class="tip-ico">🌅</span>Sa Khê: đẹp nhất 7–9h sáng (ánh vàng tường đất đỏ) và chiều 16–18h (đèn lồng bật)</div>
+  <div class="tip-item"><span class="tip-ico">🚲</span>Biking: Cầu Yujin Bridge (cầu đá + ruộng lúa) và Xingjiao Temple là 2 điểm ảnh đẹp nhất</div>
+  <div class="tip-item"><span class="tip-ico">🏞️</span>Hồ Nhĩ Hải: 15–17h ánh sáng vàng đẹp nhất, núi Thương Sơn phản chiếu xuống hồ</div>
+  <div class="tips-group-title">🏥 Sức khoẻ & An toàn</div>
+  <div class="tip-item"><span class="tip-ico">🏔️</span>Đại Lý cao ~2.000m. Một số người nhẹ đầu ngày đầu. Uống nhiều nước, tránh vận động mạnh ngay khi đến.</div>
+  <div class="tip-item"><span class="tip-ico">🆘</span>Khẩn cấp TQ: Cảnh sát 110 · Cứu thương 120 · Cứu hoả 119</div>
+  <div class="tip-item"><span class="tip-ico">📋</span>ĐSQ Việt Nam tại TQ (Bắc Kinh): +86-10-8532-5414</div>
+</section>
+
+<footer>
+  <p>🇨🇳 Vân Nam 2026 · Côn Minh · Đại Lý · Sa Khê</p>
+  <p style="margin-top:.3rem">Đoàn 4 người · 02–06 tháng 4 · Chúc đi chơi vui! 🎉</p>
+</footer>
+
+<!-- ADMIN FAB -->
+<button class="admin-fab" id="adminFab">⚙️</button>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <h3>⚙️ Chỉnh sửa nội dung</h3>
+      <button class="admin-close" id="adminClose">×</button>
+    </div>
+    <div class="admin-login" id="adminLogin">
+      <h4>🔐 Đăng nhập Admin</h4>
+      <p>Nhập mật khẩu để chỉnh sửa nội dung. Thay đổi được lưu ngay trên thiết bị này.</p>
+      <input class="admin-input" type="password" id="adminPw" placeholder="Nhập mật khẩu..." onkeydown="if(event.key==='Enter')doLogin()">
+      <div class="admin-err" id="adminErr"></div>
+      <button class="admin-btn primary" onclick="doLogin()">Đăng nhập</button>
+      <p style="font-size:.73rem;color:#bbb;margin-top:.3rem">Mật khẩu mặc định: <strong>vannam2026</strong></p>
+    </div>
+    <div id="adminEdit" style="display:none;flex:1;flex-direction:column;overflow:hidden;min-height:0">
+      <div class="admin-content" id="adminFields"></div>
+      <div class="admin-save-bar">
+        <button class="admin-btn primary" onclick="saveAll()">💾 Lưu tất cả</button>
+        <button class="admin-btn secondary" onclick="resetAll()">↺ Reset mặc định</button>
+        <span class="admin-msg" id="adminMsg">✅ Đã lưu!</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULTS={
+  cl_train1:'Vé tàu Côn Minh → Đại Lý (3/4 tàu 10:30)',
+  cl_train2:'Vé tàu Đại Lý → Côn Minh (6/4 sáng 7:00)',
+  cl_car:'Xe Đại Lý ↔ Sa Khê (cả 2 chiều)',
+  cl_hotels:'Xác nhận 3 khách sạn',
+  cl_bike:'Thuê xe đạp Sa Khê (4 xe cho CN 5/4)',
+  cl_alipay:'Cài & test Alipay / WeChat Pay',
+  cl_vpn:'Cài VPN & test hoạt động',
+  cl_amap:'Cài Amap (高德地图) + tải offline',
+  cl_sim:'Mua SIM / eSIM Trung Quốc',
+  cl_cny:'Đổi tiền CNY · ~3–4 triệu/người backup',
+  cl_addr:'Lưu offline địa chỉ TQ 3 khách sạn vào Photos',
+  tl_dinner1:'🍜 Ăn tối · Qua Qiao Mi Xian (过桥米线) · Phở vịt đặc sản Côn Minh',
+  tl_coffee:'☕ Half Mountain Coffee (半山咖啡) · View thung lũng Shaxi từ sườn núi',
+  spot_erhai:'Hành lang sinh thái bờ Tây dài ~20km. Đạp xe 4–5 tiếng dọc mặt hồ với view núi Thương Sơn hùng vĩ. Hồ có hình dạng giống chiếc tai người (洱 = cái tai), ở độ cao 1.972m.',
+  spot_dali:'Phố cổ người Bai với tường trắng mái xám đặc trưng, xây từ đầu triều Minh thế kỷ 14. South Gate → Renmin Road là trục chính. Foreigner Street (洋人街) tập trung ẩm thực và bar.',
+  spot_shaxi:'Viên ngọc ẩn của Vân Nam. Tường đất đỏ, đèn lồng đỏ, không khí yên tĩnh hoàn toàn khác Đại Lý. Dưới 50.000 khách/năm so với Đại Lý 3 triệu.',
+  food_f1:'Qua Qiao Mi Xian · Phở vịt bắc cầu',
+  food_d1:'Đặc sản số 1 Côn Minh. Nước dùng vịt sôi trong tô sứ giữ nhiệt, thả nguyên liệu tươi vào ăn ngay. Không ăn là tiếc cả chuyến.',
+  food_f2:'Rubing Cheese nướng than',
+  food_d2:'Phô mai tươi người Bai, nướng vàng giòn ngoài mềm dai trong. Vị nhạt — lạ miệng và nghiện. Ăn kèm cơm hoặc làm snack đường phố.',
+  food_f3:'Cá Hồ Nhĩ Hải hấp tương',
+  food_d3:'Cá tươi đánh bắt tại hồ, hấp hoặc kho tương đặc trưng người Bai. Ăn sau khi dạo hồ xong — rất xứng!',
+  food_f4:'Bánh Baba chiên · Chợ Xizhou',
+  food_d4:'Bánh mì dẹt chiên vàng rụm, nhân thịt hoặc ngọt — đặc sản người Bai. Ăn nóng ngay tại chợ với nước ép lựu tươi.',
+  food_f5:'Cơm chiên nấm rừng Vân Nam',
+  food_d5:'Nấm rừng Vân Nam đặc biệt thơm — không giống nơi nào. Quán nhỏ trong cổ trấn ngon hơn quán mặt tiền.',
+  food_f6:'Lẩu nấm rừng Vân Nam',
+  food_d6:'Nước dùng nấm ngọt tự nhiên, không cần nhiều gia vị. Đặc trưng nhất vùng này. Ăn tối thoải mái ở Sa Khê.',
+  food_f7:'Half Mountain Coffee (Ban Shan)',
+  food_d7:'Cafe trên sườn núi, view toàn thung lũng Shaxi. Người chủ bỏ phố lên núi trồng cà phê. Điểm dừng biking không thể bỏ qua.',
+  h1_name:'Qianhong Hotel – Kunming Station',
+  h1_phone:'+86-189 8749 5678',
+  h2_name:'Dali Cloud Love Letter Inn',
+  h2_price:'~900.000 VND / đêm',
+  h3_name:'Yundu Shaxi Courtyard',
+  h3_price:'~2.2–2.4 triệu / đêm',
+  h4_name:'Miss May Hotel',
+  h4_price:'~1.2 triệu / đêm',
+};
+const ADMIN_PW='vannam2026';
+const CKEY='vn2026_content';
+const CHKEY='vn2026_checks';
+
+function loadContent(){
+  const s=JSON.parse(localStorage.getItem(CKEY)||'{}');
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const k=el.getAttribute('data-key');
+    if(s[k]!==undefined)el.textContent=s[k];
+    else if(DEFAULTS[k]!==undefined)el.textContent=DEFAULTS[k];
+  });
+}
+
+const ADMIN_SECTIONS=[
+  {title:'🎫 Checklist · Tên các việc',keys:['cl_train1','cl_train2','cl_car','cl_hotels','cl_bike','cl_alipay','cl_vpn','cl_amap','cl_sim','cl_cny','cl_addr']},
+  {title:'🍜 Ăn uống · Tên & Mô tả',keys:['food_f1','food_d1','food_f2','food_d2','food_f3','food_d3','food_f4','food_d4','food_f5','food_d5','food_f6','food_d6','food_f7','food_d7']},
+  {title:'🏨 Khách sạn · Tên, SĐT, Giá',keys:['h1_name','h1_phone','h2_name','h2_price','h3_name','h3_price','h4_name','h4_price']},
+  {title:'📍 Địa điểm · Mô tả',keys:['spot_erhai','spot_dali','spot_shaxi']},
+  {title:'🕐 Timeline · Tên hoạt động',keys:['tl_dinner1','tl_coffee']},
+];
+const LABELS={
+  cl_train1:'Vé tàu chiều đi',cl_train2:'Vé tàu chiều về',cl_car:'Xe Đại Lý ↔ Sa Khê',
+  cl_hotels:'Xác nhận KS',cl_bike:'Thuê xe đạp',cl_alipay:'Alipay/WeChat Pay',
+  cl_vpn:'VPN',cl_amap:'Amap offline',cl_sim:'SIM/eSIM',cl_cny:'Đổi CNY',cl_addr:'Địa chỉ TQ offline',
+  tl_dinner1:'Ăn tối Côn Minh',tl_coffee:'Half Mountain Coffee',
+  spot_erhai:'Hồ Nhĩ Hải · Mô tả',spot_dali:'Đại Lý cổ trấn · Mô tả',spot_shaxi:'Sa Khê · Mô tả',
+  food_f1:'Phở vịt · Tên',food_d1:'Phở vịt · Mô tả',
+  food_f2:'Rubing Cheese · Tên',food_d2:'Rubing Cheese · Mô tả',
+  food_f3:'Cá Nhĩ Hải · Tên',food_d3:'Cá Nhĩ Hải · Mô tả',
+  food_f4:'Bánh Baba · Tên',food_d4:'Bánh Baba · Mô tả',
+  food_f5:'Cơm nấm rừng · Tên',food_d5:'Cơm nấm rừng · Mô tả',
+  food_f6:'Lẩu nấm · Tên',food_d6:'Lẩu nấm · Mô tả',
+  food_f7:'Half Mountain · Tên',food_d7:'Half Mountain · Mô tả',
+  h1_name:'KS Côn Minh · Tên',h1_phone:'KS Côn Minh · SĐT',
+  h2_name:'KS Đại Lý · Tên',h2_price:'KS Đại Lý · Giá',
+  h3_name:'KS Sa Khê OP1 · Tên',h3_price:'KS Sa Khê OP1 · Giá',
+  h4_name:'KS Sa Khê OP2 · Tên',h4_price:'KS Sa Khê OP2 · Giá',
+};
+
+function buildAdminFields(){
+  const s=JSON.parse(localStorage.getItem(CKEY)||'{}');
+  const c=document.getElementById('adminFields');
+  c.innerHTML='';
+  ADMIN_SECTIONS.forEach(sec=>{
+    const d=document.createElement('div');
+    d.className='admin-section';
+    d.innerHTML=`<div class="admin-section-title">${sec.title}</div>`;
+    sec.keys.forEach(k=>{
+      const val=s[k]!==undefined?s[k]:(DEFAULTS[k]||'');
+      const long=val.length>80;
+      d.innerHTML+=`<div class="admin-field"><label>${LABELS[k]||k}</label><textarea class="admin-textarea" data-edit-key="${k}" rows="${long?3:1}" style="min-height:${long?'72px':'42px'}">${val}</textarea></div>`;
+    });
+    c.appendChild(d);
+  });
+}
+
+function saveAll(){
+  const data={};
+  document.querySelectorAll('#adminFields [data-edit-key]').forEach(ta=>{
+    const k=ta.getAttribute('data-edit-key');
+    data[k]=ta.value;
+    document.querySelectorAll(`[data-key="${k}"]`).forEach(el=>el.textContent=ta.value);
+  });
+  localStorage.setItem(CKEY,JSON.stringify(data));
+  const m=document.getElementById('adminMsg');
+  m.style.display='block';
+  setTimeout(()=>m.style.display='none',2500);
+}
+
+function resetAll(){
+  if(!confirm('Reset về nội dung mặc định? Tất cả chỉnh sửa sẽ bị xoá.'))return;
+  localStorage.removeItem(CKEY);
+  loadContent();
+  buildAdminFields();
+}
+
+let unlocked=false;
+document.getElementById('adminFab').onclick=()=>{
+  document.getElementById('adminOverlay').classList.add('open');
+  if(unlocked){document.getElementById('adminLogin').style.display='none';document.getElementById('adminEdit').style.display='flex';buildAdminFields();}
+};
+document.getElementById('adminClose').onclick=()=>document.getElementById('adminOverlay').classList.remove('open');
+document.getElementById('adminOverlay').onclick=e=>{if(e.target===document.getElementById('adminOverlay'))document.getElementById('adminOverlay').classList.remove('open');};
+
+function doLogin(){
+  const pw=document.getElementById('adminPw').value;
+  if(pw===ADMIN_PW){
+    unlocked=true;
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminEdit').style.display='flex';
+    buildAdminFields();
+    document.getElementById('adminErr').textContent='';
+  }else{
+    document.getElementById('adminErr').textContent='❌ Sai mật khẩu. Thử lại.';
+    document.getElementById('adminPw').value='';
+    document.getElementById('adminPw').focus();
+  }
+}
+
+// TABS
+document.querySelectorAll('.nav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('section.tab').forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+    document.getElementById('tab-'+a.dataset.tab).classList.add('active');
+    window.scrollTo({top:document.getElementById('nav').offsetTop-1,behavior:'smooth'});
+  });
+});
+
+// CHECKLIST
+function toggleCheck(el){el.classList.toggle('done');saveChecks();}
+function saveChecks(){
+  const s=Array.from(document.querySelectorAll('.cl-item')).map(i=>i.classList.contains('done'));
+  localStorage.setItem(CHKEY,JSON.stringify(s));
+  updateProgress();
+}
+function loadChecks(){
+  const s=JSON.parse(localStorage.getItem(CHKEY)||'[]');
+  document.querySelectorAll('.cl-item').forEach((item,i)=>{if(s[i])item.classList.add('done');});
+  updateProgress();
+}
+function updateProgress(){
+  const items=document.querySelectorAll('.cl-item');
+  const done=document.querySelectorAll('.cl-item.done').length;
+  const pct=items.length?Math.round(done/items.length*100):0;
+  document.getElementById('prog-text').textContent=`${done} / ${items.length} việc xong`;
+  document.getElementById('prog-fill').style.width=pct+'%';
+}
+
+loadContent();
+loadChecks();
+</script>
+</body>
+</html>
